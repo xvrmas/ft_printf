@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:23:19 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/14 14:31:03 by xavier           ###   ########.fr       */
+/*   Updated: 2023/07/14 14:55:33 by xavier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -221,8 +221,8 @@ int main()
 	ft_printf("Digit:  %d\n", number);
 	printf("Printf  %d\n", number);
 	
-/*	int num = 0x182b6;
+	int num = 0x182b6;
 	ft_printf("Format  %%i: %i \n", num);	
-*/
+
 	return (0);
 }
