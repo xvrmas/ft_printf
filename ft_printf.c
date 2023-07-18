@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:23:19 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/18 19:49:53 by xavier           ###   ########.fr       */
+/*   Updated: 2023/07/18 20:26:33 by xavier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -220,9 +220,10 @@ int main()
 	printf("i: %d\n", i);
 	
 	int  hex = 877946;
-	len = ft_printf("hexa lowercase: %x \n", hex);
-	ft_printf("hexa uppercase: %X \n", hex);
-	i = printf("hexa lowercase: %x \n", hex);
+	int hex2 = 255;
+	len = ft_printf("hexa lowercase: %x y %x \n", hex, hex2);
+	ft_printf("hexa uppercase: %X y %X \n", hex, hex2);
+	i = printf("hexa lowercase: %x y %x \n", hex, hex2);
 	printf("len: %d\n", len);
 	printf("i: %d\n", i);
 	
@@ -242,12 +243,17 @@ int main()
 	char *ptr;
 	char **pptr;
 	char ***ppptr;
+	char punt2;
+	char *ptr2;
+
 	punt = '@';
+	punt2 = 'A';
 	ptr = &punt;
 	pptr = &ptr;
 	ppptr = &pptr;
-	len = ft_printf("Puntero hexa ft_printf: %p\n", ppptr);
-	i = printf("Puntero hexa printf:    %p\n", ppptr);
+	ptr2 = &punt2;
+	len = ft_printf("Puntero hexa ft_printf: %p y %p\n", ppptr, ptr2);
+        i = printf("Puntero hexa printf:    %p y %p\n", ppptr, ptr2);
 	printf("len: %d\n", len);
         printf("i: %d\n", i);
 
