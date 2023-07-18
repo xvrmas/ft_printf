@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:23:19 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/14 14:55:33 by xavier           ###   ########.fr       */
+/*   Updated: 2023/07/18 19:13:59 by xavier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -15,12 +15,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-static void	ft_putchar(char c)
+static int	ft_putchar(char c)
 {
 	write (1, &c, 1);
+	return (1);
 }
 
-static void	ft_string(char *str)
+static int	ft_string(char *str)
 {
 	int	i;
 
@@ -30,6 +31,7 @@ static void	ft_string(char *str)
 		ft_putchar(str[i]);
 		i++;
 	}
+	return (i);
 }
 
 static int ft_len(int num)
@@ -147,11 +149,14 @@ static void ft_print_i(void *punti)
 	printf("%p\n", punti);
 }
 
-static void	ft_format(va_list args, const char *format)
+static int	ft_format(va_list args, const char *format)
 {
+	int len;
+
+	len = 0;
 	format++;
 	if (*format == 's')
-		ft_string(va_arg(args, char *));
+		len += ft_string(va_arg(args, char *));
 	else if (*format == 'x' || *format == 'X')
 		ft_hex(va_arg(args, int), *format);
 	else if (*format == 'c')
@@ -164,40 +169,46 @@ static void	ft_format(va_list args, const char *format)
 		ft_digit(va_arg(args, int));
 	else if (*format == 'i')
 		ft_print_i(va_arg(args, void *));
+
+	return (len);
 }
 
 int	ft_printf(char const *format, ...)
 {
 	va_list	args;
+	int len;
 
+	len = 0;
 	va_start(args, format);
 	while (*format != '\0')
 	{
 		if (*format == '%')
 		{
-			ft_format(args, format);
+			len += ft_format(args, format);
 			format++;
 		}
 		else
 		{
-			ft_putchar(*format);
+			len += ft_putchar(*format);
 		}
 		format++;
 	}
 	va_end(args);
-	return (0);
+	return (len);
 }
 
 int main()
 {
-	ft_printf("\n");
-	ft_printf("\n");
-	
+	int len;
+	int i;
 	char *s1 = "La guerra de las galaxias";
 	char *s5 = "George Lucas";
-	ft_printf("String: %s, director: %s.\n", s1, s5);
-
-	size_t  hex = 946;
+	len = ft_printf("String: %s, director: %s.\n", s1, s5);
+	
+	i = printf("String: %s, director: %s.\n", s1, s5);
+	printf("len: %d\n", len);
+	printf("i: %d\n", i);
+/*	size_t  hex = 946;
 	ft_printf("hexa lowercase: %x \n", hex);
 	ft_printf("hexa uppercase: %X \n", hex);
 	
@@ -223,6 +234,6 @@ int main()
 	
 	int num = 0x182b6;
 	ft_printf("Format  %%i: %i \n", num);	
-
+*/
 	return (0);
 }
