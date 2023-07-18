@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:23:19 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/18 19:13:59 by xavier           ###   ########.fr       */
+/*   Updated: 2023/07/18 19:49:53 by xavier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -47,14 +47,16 @@ static int ft_len(int num)
 	return (i);
 }
 
-static void	ft_hex(unsigned long  hex, int letter)
+static int	ft_hex(unsigned long  hex, int letter)
 {
+	int		len;
 	int		i;
 	int		reminder;
 	int 	upper;
 	char	result[ft_len(hex)];
 
 	i = 0;
+	len = 0; 
 	upper = 97;
 	if (letter == 88)
 		upper = 65;
@@ -67,6 +69,7 @@ static void	ft_hex(unsigned long  hex, int letter)
 			result[i] = reminder - 10 + upper;
 		hex /= 16;
 		i++;
+		len++;
 	}
 	i--;
 	while (i >= 0)
@@ -74,16 +77,20 @@ static void	ft_hex(unsigned long  hex, int letter)
 		ft_putchar(result[i]);
 		i--;
 	}
+	return (len);
 }
 
-static void ft_pointer(void  *ptr)
+static  int  ft_pointer(void  *ptr)
 {
 	size_t adress;
+	int len;
 
+	len = 0;
 	adress = (size_t)ptr;
-	ft_putchar('0');
-	ft_putchar('x');
-	ft_hex(adress, 'x');
+	len += ft_putchar('0');
+	len += ft_putchar('x');
+	len += ft_hex(adress, 'x');
+	return (len);
 }
 static  char    *putnumb(int length, int sign, int n, int flag)
 {
@@ -137,12 +144,15 @@ char    *ft_itoa_printf(int n)
         return (putnumb(length, sign, n, flag));
 }
 
-static void ft_digit(int num)
+static int ft_digit(int num)
 {
 	char *str;
+	int len;
 
+	len = 0;
 	str = ft_itoa_printf(num);
-	ft_string(str);	
+	len = ft_string(str);
+	return (len);	
 }
 static void ft_print_i(void *punti)
 {
@@ -158,15 +168,15 @@ static int	ft_format(va_list args, const char *format)
 	if (*format == 's')
 		len += ft_string(va_arg(args, char *));
 	else if (*format == 'x' || *format == 'X')
-		ft_hex(va_arg(args, int), *format);
+	        len += ft_hex(va_arg(args, int), *format);
 	else if (*format == 'c')
-		ft_putchar(va_arg(args, int));
+		len += ft_putchar(va_arg(args, int));
 	else if (*format == '%')
-		ft_putchar('%');
+		len += ft_putchar('%');
 	else if (*format == 'p')
-		ft_pointer(va_arg(args, void *));
+		len += ft_pointer(va_arg(args, void *));
 	else if (*format =='d')
-		ft_digit(va_arg(args, int));
+		len += ft_digit(va_arg(args, int));
 	else if (*format == 'i')
 		ft_print_i(va_arg(args, void *));
 
@@ -208,14 +218,25 @@ int main()
 	i = printf("String: %s, director: %s.\n", s1, s5);
 	printf("len: %d\n", len);
 	printf("i: %d\n", i);
-/*	size_t  hex = 946;
-	ft_printf("hexa lowercase: %x \n", hex);
+	
+	int  hex = 877946;
+	len = ft_printf("hexa lowercase: %x \n", hex);
 	ft_printf("hexa uppercase: %X \n", hex);
+	i = printf("hexa lowercase: %x \n", hex);
+	printf("len: %d\n", len);
+	printf("i: %d\n", i);
 	
 	char a = 'H';
-	ft_printf("char: %c \n", a);
+	len = ft_printf("char: %c \n", a);
+	i = printf("char: %c \n", a);
+	printf("len: %d\n", len);
+        printf("i: %d\n", i);
 
-	ft_printf("Porcentaje: 100%%, 75%% y 25%%\n");
+	len = ft_printf("Porcentaje: 100%%, 90%%, 75%% y 25%%\n");
+	i = printf("Porcentaje: 100%%, 90%%, 75%% y 25%%\n");
+	printf("len: %d\n", len);
+        printf("i: %d\n", i);
+
 
 	char punt;
 	char *ptr;
@@ -225,14 +246,19 @@ int main()
 	ptr = &punt;
 	pptr = &ptr;
 	ppptr = &pptr;
-	ft_printf("Puntero hexa ft_printf: %p\n", ppptr);
-	printf("Puntero hexa printf:    %p\n", ppptr);
+	len = ft_printf("Puntero hexa ft_printf: %p\n", ppptr);
+	i = printf("Puntero hexa printf:    %p\n", ppptr);
+	printf("len: %d\n", len);
+        printf("i: %d\n", i);
 
-	int number = 214748.8;
-	ft_printf("Digit:  %d\n", number);
-	printf("Printf  %d\n", number);
+
+	int number = 772748.8;
+	len = ft_printf("Digit:  %d\n", number);
+	i = printf("Printf  %d\n", number);
+	printf("len: %d\n", len);
+        printf("i: %d\n", i);
 	
-	int num = 0x182b6;
+/*	int num = 0x182b6;
 	ft_printf("Format  %%i: %i \n", num);	
 */
 	return (0);
