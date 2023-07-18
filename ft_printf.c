@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:23:19 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/18 20:26:33 by xavier           ###   ########.fr       */
+/*   Updated: 2023/07/18 23:37:50 by xavier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -159,26 +159,26 @@ static void ft_print_i(void *punti)
 	printf("%p\n", punti);
 }
 
-static int	ft_format(va_list args, const char *format)
+static int	ft_format(void *args, const char *format)
 {
 	int len;
 
 	len = 0;
 	format++;
 	if (*format == 's')
-		len += ft_string(va_arg(args, char *));
+		len += ft_string((char *)args);
 	else if (*format == 'x' || *format == 'X')
-	        len += ft_hex(va_arg(args, int), *format);
+	        len += ft_hex((unsigned long)args, *format);
 	else if (*format == 'c')
-		len += ft_putchar(va_arg(args, int));
+		len += ft_putchar((size_t)args);
 	else if (*format == '%')
 		len += ft_putchar('%');
 	else if (*format == 'p')
-		len += ft_pointer(va_arg(args, void *));
+		len += ft_pointer((void *)args);
 	else if (*format =='d')
-		len += ft_digit(va_arg(args, int));
+		len += ft_digit((size_t)args);
 	else if (*format == 'i')
-		ft_print_i(va_arg(args, void *));
+		ft_print_i((void *)args);
 
 	return (len);
 }
@@ -194,7 +194,7 @@ int	ft_printf(char const *format, ...)
 	{
 		if (*format == '%')
 		{
-			len += ft_format(args, format);
+			len += ft_format(va_arg(args, void *), format);
 			format++;
 		}
 		else
@@ -227,7 +227,7 @@ int main()
 	printf("len: %d\n", len);
 	printf("i: %d\n", i);
 	
-	char a = 'H';
+	char a = <<';
 	len = ft_printf("char: %c \n", a);
 	i = printf("char: %c \n", a);
 	printf("len: %d\n", len);
@@ -247,7 +247,7 @@ int main()
 	char *ptr2;
 
 	punt = '@';
-	punt2 = 'A';
+	punt2 = '<';
 	ptr = &punt;
 	pptr = &ptr;
 	ppptr = &pptr;
