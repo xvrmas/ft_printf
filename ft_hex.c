@@ -6,12 +6,14 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:12:21 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/19 14:11:27 by xamas-ga         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:06:36 by xamas-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libftprintf.h"
+#include "ft_printf.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-static int	ft_len(int num)
+static int	ft_len(long num)
 {
 	int	i;
 
@@ -33,17 +35,21 @@ static void	ft_puthex(const char *result, int i)
 	}
 }
 
-int	ft_hex(unsigned long hex, int letter)
+int	ft_hex(long hex, int letter)
 {
 	int		i;
 	int		reminder;
 	int		upper;
-	char	result[ft_len(hex)];
+	int		len;
+	char	*result;
 
 	i = 0;
-	upper = 97;
-	if (letter == 88)
-		upper = 65;
+	upper = 'A';
+	len = ft_len(hex);
+	result = (char *)malloc(sizeof(char) * len);
+	len = 0;
+	if (letter == 'x')
+		upper = 'a';
 	while (hex != 0)
 	{
 		reminder = hex % 16;
@@ -53,7 +59,10 @@ int	ft_hex(unsigned long hex, int letter)
 			result[i] = reminder - 10 + upper;
 		hex /= 16;
 		i++;
+		len++;
 	}
+	i--;
 	ft_puthex(result, i);
-	return (i);
+	free(result);
+	return (len);
 }

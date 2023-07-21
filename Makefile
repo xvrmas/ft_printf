@@ -15,7 +15,7 @@ ${NAME}: ${OBJECTS}
 
 all: ${NAME}
 
-%.o : %.c libftprintf.h
+%.o : %.c ft_printf.h
 	cc ${CFLAGS} ${INCLUDE} -c $< -o $@
 
 fclean: clean

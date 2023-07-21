@@ -6,11 +6,11 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:06:10 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/19 14:05:43 by xamas-ga         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:51:44 by xamas-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(char c)
 {
