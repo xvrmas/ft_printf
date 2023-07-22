@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 12:59:18 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/21 12:35:20 by xavier           ###   ########.fr       */
+/*   Updated: 2023/07/22 13:46:09 by xavier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -63,21 +63,22 @@ int	ft_printf(char const *format, ...)
 	return (len);
 }
 
-/*int main()
+int main()
 {
 	int len;
 	int i;
 	int len2;
 	char *s1 = "La guerra de las galaxias";
-	char *s5 = "George Lucas";
-	len = ft_printf("String: %s, director: %s.\n", s1, s5);
+	char *s2 = "George Lucas";
+	char *s3 = "1974";
+	len = ft_printf("String: %s, director: %s, year: %s.\n", s1, s2, s3);
 
-	i = printf("String: %s, director: %s.\n", s1, s5);
+	i = printf("String: %s, director: %s, year: %s.\n", s1, s2, s3);
 	printf("len: %d\n", len);
 	printf("i: %d\n", i);
 
-	int  hex = 925568;
-	int hex2 = 28855;
+	int  hex = 15;
+	int hex2 = 255;
 	len = ft_printf("hexa lowercase: %x y %x \n", hex, hex2);
 	len2 = ft_printf("hexa uppercase: %X y %X \n", hex, hex2);
 	i =      printf("lowerca printf: %x y %x \n", hex, hex2);
@@ -85,9 +86,9 @@ int	ft_printf(char const *format, ...)
 	printf("len2: %d\n", len2);
 	printf("i: %d\n", i);
 
-	char a = 'A';
-	len = ft_printf("char: %%%c \n", a);
-	i = printf("char: %%%c \n", a);
+	char a = 'H';
+	len = ft_printf("char: %%m%c \n", a);
+	i = printf("char: %%m%c \n", a);
 	printf("len: %d\n", len);
         printf("i: %d\n", i);
 
@@ -126,4 +127,4 @@ int	ft_printf(char const *format, ...)
 	ft_printf("Format  %%i: %i \n", num);
 
 	return (0);
-}*/
+}
