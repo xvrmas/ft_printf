@@ -6,71 +6,51 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:32:37 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/20 16:50:00 by xamas-ga         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:47:45 by xavier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdarg.h>
 #include "ft_printf.h"
 
-static char	*putnumb(int length, int sign, int n, int flag)
+static void    ft_putnb(int n)
 {
-	char	*str;
-	int		num;
-
-	num = n;
-	while (num / 10)
-	{
-		num /= 10;
-		length++;
-	}
-	str = malloc(sizeof(char) * (length + 1));
-	if (str == NULL)
-		return (NULL);
-	str[length--] = '\0';
-	if (sign == -1)
-		str[0] = '-';
-	if (n == 0)
-		str[length++] = '0';
-	while (n != 0)
-	{
-		str[length--] = n % 10 + '0';
-		n /= 10;
-	}
-	if (flag == 1)
-		str[10] = '8';
-	return (str);
-}
-
-static char	*ft_itoa_printf(int n)
-{
-	int	sign;
-	int	length;
-	int	flag;
-
-	sign = 1;
-	length = 1;
-	flag = 0;
 	if (n == -2147483648)
-	{
-		n -= -1;
-		flag = 1;
-	}
-	if (n < 0)
-	{
-		sign = -1;
-		n *= -1;
-		length++;
-	}
-	return (putnumb(length, sign, n, flag));
-}
+                write(1, "2147483648", 11);
+	if (n > 9)
+        {
+                ft_putnb(n / 10);
+                ft_putnb(n % 10);
+        }
+        else
+        {
+                ft_putchar(n + '0');
+        }
+}	
 
 int	ft_digit(int num)
 {
-	char	*str;
-	int		len;
+	int			n;
+	static int	i;
 
-	len = 0;
-	str = ft_itoa_printf(num);
-	len = ft_string(str);
-	return (len);
+	n = num;
+	i = 1;
+	if (n < 0)
+	{
+		n = -n;
+		ft_putchar('-');
+		i++;
+	}
+	while (n > 9)
+	{
+		n = n / 10;
+		i++;
+	}
+	if (num < 0)
+		num = -num;
+	ft_putnb(num);
+	if (n == -2147483648)
+		i = 11;
+	return (i);
 }

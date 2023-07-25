@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 12:59:18 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/22 13:46:09 by xavier           ###   ########.fr       */
+/*   Updated: 2023/07/25 18:42:48 by xavier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -67,7 +67,7 @@ int main()
 {
 	int len;
 	int i;
-	int len2;
+/*	int len2;
 	char *s1 = "La guerra de las galaxias";
 	char *s2 = "George Lucas";
 	char *s3 = "1974";
@@ -76,9 +76,10 @@ int main()
 	i = printf("String: %s, director: %s, year: %s.\n", s1, s2, s3);
 	printf("len: %d\n", len);
 	printf("i: %d\n", i);
+	ft_printf("\n");
 
-	int  hex = 15;
-	int hex2 = 255;
+	int  hex = 77615;
+	int hex2 = 25598;
 	len = ft_printf("hexa lowercase: %x y %x \n", hex, hex2);
 	len2 = ft_printf("hexa uppercase: %X y %X \n", hex, hex2);
 	i =      printf("lowerca printf: %x y %x \n", hex, hex2);
@@ -86,6 +87,7 @@ int main()
 	printf("len2: %d\n", len2);
 	printf("i: %d\n", i);
 
+	ft_printf("\n");
 	char a = 'H';
 	len = ft_printf("char: %%m%c \n", a);
 	i = printf("char: %%m%c \n", a);
@@ -98,6 +100,7 @@ int main()
         printf("i: %d\n", i);
 
 
+	ft_printf("\n");
 	char punt;
 	char *ptr;
 	char **pptr;
@@ -117,14 +120,21 @@ int main()
         printf("i: %d\n", i);
 
 
-	int number = 7727488;
-	len = ft_printf("Digit:  %d\n", number);
-	i = printf("Printf  %d\n", number);
-	printf("len: %d\n", len);
+	ft_printf("\n");
+*/	int number =  -2147483648;
+	len = ft_printf("%d", number);
+	ft_printf("\n");
+	i = printf("%d", number);
+	printf("\nlen: %d\n", len);
         printf("i: %d\n", i);
 
-	int num = 0x182b6;
-	ft_printf("Format  %%i: %i \n", num);
+	ft_printf("\n");
+	int nbr =  2147483647;
+	len = ft_printf("%d", nbr);
+	ft_printf("\n");
+	i = printf("%d", nbr);
+	printf("\nlen: %d\n", len);
+        printf("i: %d\n", i);
 
 	return (0);
 }
