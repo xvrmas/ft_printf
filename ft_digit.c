@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:32:37 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/25 18:47:45 by xavier           ###   ########.fr       */
+/*   Updated: 2023/07/25 20:22:31 by xavier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -17,8 +17,8 @@
 static void    ft_putnb(int n)
 {
 	if (n == -2147483648)
-                write(1, "2147483648", 11);
-	if (n > 9)
+                write(1, "2147483648", 10);
+	else if (n > 9)
         {
                 ft_putnb(n / 10);
                 ft_putnb(n % 10);
