@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:12:21 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/22 13:45:24 by xavier           ###   ########.fr       */
+/*   Updated: 2023/07/26 17:09:25 by xavier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -35,25 +35,24 @@ static void	ft_puthex(const char *result, int i)
 	}
 }
 
-int	ft_hex(long hex, int letter)
+static int	ft_letter(int letter)
 {
-	int		i;
-	int		reminder;
-	int		upper;
-	int		len;
-	char	*result;
+	int	upper;
 
-	i = 0;
 	upper = 'A';
-	len = ft_len(hex);
-	result = (char *)malloc(sizeof(char) * len);
-	if (!result)
-		return (0);
-	len = 0;
-	if (hex == 0)
-		len += ft_putchar('0');
 	if (letter == 'x')
 		upper = 'a';
+	return (upper);
+}
+
+static int	ft_result(unsigned long hex, char *result, int upper)
+{
+	int	reminder;
+	int	i;
+	int	len;
+
+	i = 0;
+	len = 0;
 	while (hex != 0)
 	{
 		reminder = hex % 16;
@@ -67,6 +66,25 @@ int	ft_hex(long hex, int letter)
 	}
 	i--;
 	ft_puthex(result, i);
-	free(result);
 	return (len);
+}
+
+int	ft_hex(unsigned long hex, int letter)
+{
+	int		upper;
+	int		len;
+	int		lenth;
+	char	*result;
+
+	lenth = 0;
+	len = ft_len(hex);
+	upper = ft_letter(letter);
+	result = (char *)malloc(sizeof(char) * len);
+	if (!result)
+		return (0);
+	if (hex == 0)
+		lenth += ft_putchar('0');
+	lenth += ft_result(hex, result, upper);
+	free(result);
+	return (lenth);
 }

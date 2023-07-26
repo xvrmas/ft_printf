@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 12:59:18 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/25 20:20:21 by xavier           ###   ########.fr       */
+/*   Updated: 2023/07/26 19:25:57 by xavier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -24,7 +24,7 @@ static int	ft_format(va_list args, const char *format)
 	if (*format == 's')
 		len += ft_string(va_arg(args, char *));
 	else if (*format == 'x' || *format == 'X')
-		len += ft_hex(va_arg(args,  long), *format);
+		len += ft_hex(va_arg(args, unsigned long), *format);
 	else if (*format == 'c')
 	{
 		c = va_arg(args, int);
@@ -34,8 +34,10 @@ static int	ft_format(va_list args, const char *format)
 		len += ft_putchar('%');
 	else if (*format == 'p')
 		len += ft_pointer(va_arg(args, void *));
-	else if (*format == 'd')
-		len += ft_digit(va_arg(args, size_t));
+	else if (*format == 'd' || *format == 'i') 
+		len += ft_digit(va_arg(args, int));
+	else if (*format == 'u')
+		len += ft_unsign(va_arg(args, unsigned int));
 	return (len);
 }
 
@@ -63,12 +65,15 @@ int	ft_printf(char const *format, ...)
 	return (len);
 }
 
-int main()
-{
-	int len;
+/*int main()
+{*/
+/*	int len;
 	int i;
-/*	int len2;
-	char *s1 = "La guerra de las galaxias";
+
+	int len2;
+	int len3;
+*/
+/*	char *s1 = "La guerra de las galaxias";
 	char *s2 = "George Lucas";
 	char *s3 = "1974";
 	len = ft_printf("String: %s, director: %s, year: %s.\n", s1, s2, s3);
@@ -76,19 +81,37 @@ int main()
 	i = printf("String: %s, director: %s, year: %s.\n", s1, s2, s3);
 	printf("len: %d\n", len);
 	printf("i: %d\n", i);
-	ft_printf("\n");
-
-	int  hex = 77615;
-	int hex2 = 25598;
+*/
+/*	int  hex = 0;
+	int hex2 = 25988075;
 	len = ft_printf("hexa lowercase: %x y %x \n", hex, hex2);
 	len2 = ft_printf("hexa uppercase: %X y %X \n", hex, hex2);
 	i =      printf("lowerca printf: %x y %x \n", hex, hex2);
-	printf("len: %d\n", len);
+	len3 =   printf("uppercase prin: %X y %X \n", hex, hex2);
+	printf("len:  %d\n", len);
 	printf("len2: %d\n", len2);
-	printf("i: %d\n", i);
+	printf("i:    %d\n", i);
+	printf("len3: %d\n", len3);
 
-	ft_printf("\n");
-	char a = 'H';
+	char punt;
+    char *ptr;
+    char **pptr;
+    char ***ppptr;
+    char punt2;
+    char *ptr2;
+
+    punt = '@';
+    punt2 = '<';
+    ptr = &punt;
+    pptr = &ptr;
+    ppptr = &pptr;
+    ptr2 = &punt2;
+    len = ft_printf("Puntero hexa ft_printf: %p y %p\n", ppptr, NULL);
+    i = printf("Puntero hexa printf:    %p y %p\n", ppptr, NULL);
+    printf("len: %d\n", len);
+    printf("i:   %d\n", i);
+*/
+/*	char a = 'H';
 	len = ft_printf("char: %%m%c \n", a);
 	i = printf("char: %%m%c \n", a);
 	printf("len: %d\n", len);
@@ -99,42 +122,21 @@ int main()
 	printf("len: %d\n", len);
         printf("i: %d\n", i);
 
-
+	len = ft_printf("%d",2147483647);
 	ft_printf("\n");
-	char punt;
-	char *ptr;
-	char **pptr;
-	char ***ppptr;
-	char punt2;
-	char *ptr2;
+	i = printf("%d", 2147483647);
+	printf("\nlen: %d", len);
+    printf("\ni: %d\n", i);
+*/
 
-	punt = '@';
-	punt2 = '<';
-	ptr = &punt;
-	pptr = &ptr;
-	ppptr = &pptr;
-	ptr2 = &punt2;
-	len = ft_printf("Puntero hexa ft_printf: %p y %p\n", ppptr, ptr2);
-        i = printf("Puntero hexa printf:    %p y %p\n", ppptr, ptr2);
-	printf("len: %d\n", len);
-        printf("i: %d\n", i);
+/*	int j;
+	int k;
 
-
+	j = ft_printf("%u", -10);
 	ft_printf("\n");
-*/	int number =  -2147483648;
-	len = ft_printf("%d", number);
-	ft_printf("\n");
-	i = printf("%d", number);
-	printf("\nlen: %d\n", len);
-        printf("i: %d\n", i);
-
-	ft_printf("\n");
-	int nbr =  2147483647;
-	len = ft_printf("%d", nbr);
-	ft_printf("\n");
-	i = printf("%d", nbr);
-	printf("\nlen: %d\n", len);
-        printf("i: %d\n", i);
-
+	k = printf("%u", -10);
+	printf("\nft_print: %d\n", j);
+	printf("printf: %d\n", k);
 	return (0);
-}
+
+}*/	

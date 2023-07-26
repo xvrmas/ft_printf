@@ -2,7 +2,7 @@
 NAME = libftprintf.a
 
 SRC = ft_digit.c ft_hex.c ft_pointer.c ft_printf.c \
-	ft_putchar.c ft_string.c
+	ft_putchar.c ft_string.c ft_unsign.c
 
 OBJECTS = ${SRC:.c=.o}
 
