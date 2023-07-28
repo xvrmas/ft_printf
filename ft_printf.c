@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 12:59:18 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/26 19:25:57 by xavier           ###   ########.fr       */
+/*   Updated: 2023/07/27 14:53:36 by xamas-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -65,15 +65,17 @@ int	ft_printf(char const *format, ...)
 	return (len);
 }
 
-/*int main()
-{*/
-/*	int len;
+int main()
+{
+	int len;
 	int i;
 
 	int len2;
 	int len3;
-*/
-/*	char *s1 = "La guerra de las galaxias";
+/*	ft_printf("\n");
+	ft_printf("\n");
+	ft_printf("------------------------------------------&c------------------------------------\n");
+	char *s1 = "La guerra de las galaxias";
 	char *s2 = "George Lucas";
 	char *s3 = "1974";
 	len = ft_printf("String: %s, director: %s, year: %s.\n", s1, s2, s3);
@@ -81,37 +83,36 @@ int	ft_printf(char const *format, ...)
 	i = printf("String: %s, director: %s, year: %s.\n", s1, s2, s3);
 	printf("len: %d\n", len);
 	printf("i: %d\n", i);
-*/
-/*	int  hex = 0;
+*/	
+	ft_printf("------------------------------------------&x-&X---------------------------------\n");
+	int  hex = 0;
 	int hex2 = 25988075;
 	len = ft_printf("hexa lowercase: %x y %x \n", hex, hex2);
 	len2 = ft_printf("hexa uppercase: %X y %X \n", hex, hex2);
 	i =      printf("lowerca printf: %x y %x \n", hex, hex2);
 	len3 =   printf("uppercase prin: %X y %X \n", hex, hex2);
-	printf("len:  %d\n", len);
-	printf("len2: %d\n", len2);
-	printf("i:    %d\n", i);
-	printf("len3: %d\n", len3);
+	ft_printf("len:  %d\n", len);
+	ft_printf("len2: %d\n", len2);
+	ft_printf("i:    %d\n", i);
+	ft_printf("len3: %d\n", len3);
 
+	ft_printf("------------------------------------------&x-&X---------------------------------\n");
 	char punt;
-    char *ptr;
-    char **pptr;
-    char ***ppptr;
-    char punt2;
-    char *ptr2;
+  	char *ptr;
+    	char **pptr;
+    	char ***ppptr;
 
-    punt = '@';
-    punt2 = '<';
-    ptr = &punt;
-    pptr = &ptr;
-    ppptr = &pptr;
-    ptr2 = &punt2;
-    len = ft_printf("Puntero hexa ft_printf: %p y %p\n", ppptr, NULL);
-    i = printf("Puntero hexa printf:    %p y %p\n", ppptr, NULL);
-    printf("len: %d\n", len);
-    printf("i:   %d\n", i);
-*/
-/*	char a = 'H';
+    	punt = '@';
+    	ptr = &punt;
+    	pptr = &ptr;
+    	ppptr = &pptr;
+    	len = ft_printf("Puntero hexa ft_printf: %p y %p\n", ppptr, NULL);
+    	i =      printf("Puntero hexa printf:    %p y %p\n", ppptr, NULL);
+    	ft_printf("len: %d\n", len);
+    	ft_printf("i:   %d\n", i);
+
+/*	ft_printf("------------------------------------------&x-&X---------------------------------\n");
+	char a = 'H';
 	len = ft_printf("char: %%m%c \n", a);
 	i = printf("char: %%m%c \n", a);
 	printf("len: %d\n", len);
@@ -126,17 +127,18 @@ int	ft_printf(char const *format, ...)
 	ft_printf("\n");
 	i = printf("%d", 2147483647);
 	printf("\nlen: %d", len);
-    printf("\ni: %d\n", i);
-*/
+    	printf("\ni: %d\n", i);
 
-/*	int j;
+	ft_printf("------------------------------------------&x-&X---------------------------------\n");
+
+	int j;
 	int k;
 
-	j = ft_printf("%u", -10);
+	j = ft_printf("%u",-10);
 	ft_printf("\n");
 	k = printf("%u", -10);
 	printf("\nft_print: %d\n", j);
 	printf("printf: %d\n", k);
 	return (0);
-
-}*/	
+*/
+}
