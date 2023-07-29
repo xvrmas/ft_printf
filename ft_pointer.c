@@ -16,7 +16,8 @@ int	ft_pointer(void *ptr)
 {
 	size_t	adress;
 	int		len;
-
+	if (ptr == NULL)
+		return (ft_string("(NULL)"));
 	len = 0;
 	adress = (size_t)ptr;
 	len += ft_putchar('0');

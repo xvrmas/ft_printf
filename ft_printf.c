@@ -72,7 +72,8 @@ int main()
 
 	int len2;
 	int len3;
-/*	ft_printf("\n");
+	
+	ft_printf("\n");
 	ft_printf("\n");
 	ft_printf("------------------------------------------&c------------------------------------\n");
 	char *s1 = "La guerra de las galaxias";
@@ -83,7 +84,7 @@ int main()
 	i = printf("String: %s, director: %s, year: %s.\n", s1, s2, s3);
 	printf("len: %d\n", len);
 	printf("i: %d\n", i);
-*/	
+	
 	ft_printf("------------------------------------------&x-&X---------------------------------\n");
 	int  hex = 0;
 	int hex2 = 25988075;
@@ -109,9 +110,9 @@ int main()
     	len = ft_printf("Puntero hexa ft_printf: %p y %p\n", ppptr, NULL);
     	i =      printf("Puntero hexa printf:    %p y %p\n", ppptr, NULL);
     	ft_printf("len: %d\n", len);
-    	ft_printf("i:   %d\n", i);
+   	ft_printf("i:   %d\n", i);
 
-/*	ft_printf("------------------------------------------&x-&X---------------------------------\n");
+	ft_printf("------------------------------------------&x-&X---------------------------------\n");
 	char a = 'H';
 	len = ft_printf("char: %%m%c \n", a);
 	i = printf("char: %%m%c \n", a);
@@ -140,5 +141,5 @@ int main()
 	printf("\nft_print: %d\n", j);
 	printf("printf: %d\n", k);
 	return (0);
-*/
+
 }
