@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static int	ft_len(unsigned long num)
+static int	ft_len(unsigned int num)
 {
 	int	i;
 
@@ -45,7 +45,7 @@ static int	ft_letter(int letter)
 	return (upper);
 }
 
-static int	ft_result(unsigned long hex, char *result, int upper)
+static int	ft_result(unsigned int	hex, char *result, int upper)
 {
 	int	reminder;
 	int	i;
@@ -69,7 +69,7 @@ static int	ft_result(unsigned long hex, char *result, int upper)
 	return (len);
 }
 
-int	ft_hex(unsigned long hex, int letter)
+int	ft_hex(unsigned int hex, int letter)
 {
 	int		upper;
 	int		len;

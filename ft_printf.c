@@ -24,7 +24,7 @@ static int	ft_format(va_list args, const char *format)
 	if (*format == 's')
 		len += ft_string(va_arg(args, char *));
 	else if (*format == 'x' || *format == 'X')
-		len += ft_hex(va_arg(args, unsigned long), *format);
+		len += ft_hex(va_arg(args, unsigned int), *format);
 	else if (*format == 'c')
 	{
 		c = va_arg(args, int);
@@ -33,7 +33,7 @@ static int	ft_format(va_list args, const char *format)
 	else if (*format == '%')
 		len += ft_putchar('%');
 	else if (*format == 'p')
-		len += ft_pointer(va_arg(args, void *));
+		len += ft_pointer(va_arg(args, unsigned long long));
 	else if (*format == 'd' || *format == 'i') 
 		len += ft_digit(va_arg(args, int));
 	else if (*format == 'u')
@@ -64,7 +64,7 @@ int	ft_printf(char const *format, ...)
 	va_end(args);
 	return (len);
 }
-
+/*
 int main()
 {
 	int len;
@@ -86,8 +86,8 @@ int main()
 	printf("i: %d\n", i);
 	
 	ft_printf("------------------------------------------&x-&X---------------------------------\n");
-	int  hex = 0;
-	int hex2 = 25988075;
+	int  hex = 922;
+	int hex2 = -42;
 	len = ft_printf("hexa lowercase: %x y %x \n", hex, hex2);
 	len2 = ft_printf("hexa uppercase: %X y %X \n", hex, hex2);
 	i =      printf("lowerca printf: %x y %x \n", hex, hex2);
@@ -142,4 +142,4 @@ int main()
 	printf("printf: %d\n", k);
 	return (0);
 
-}
+}*/

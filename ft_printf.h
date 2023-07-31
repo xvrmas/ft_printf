@@ -13,8 +13,8 @@
 # define FT_PRINTF_H
 
 int	ft_digit(int num);
-int	ft_hex(unsigned long hex, int letter);
-int	ft_pointer(void *ptr);
+int	ft_hex(unsigned int hex, int letter);
+int	ft_pointer(unsigned long long ptr);
 int	ft_printf(char const *format, ...);
 int	ft_putchar(char c);
 int	ft_string(char *str);
