@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:32:37 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/26 16:16:52 by xamas-ga         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:31:51 by xamas-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -48,7 +48,7 @@ int	ft_digit(int num)
 	if (num < 0)
 		num = -num;
 	ft_putnb(num);
-	if (n == -2147483648)
+	if (num == -2147483648)
 		i = 11;
 	return (i);
 }

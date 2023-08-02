@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:09:27 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/27 13:51:21 by xamas-ga         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:32:05 by xamas-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -28,11 +28,12 @@ static int	ft_len(unsigned int num)
 	return (len);
 }
 
-static void	ft_print_unsign(unsigned int num)
+static int	ft_print_unsign(unsigned int num)
 {
 	int		len;
 	int		i;
 	char	*str;
+	int		err;
 
 	len = ft_len(num);
 	i = 0;
@@ -46,25 +47,26 @@ static void	ft_print_unsign(unsigned int num)
 	}
 	i--;
 	while (i >= 0)
-	{
-		ft_putchar(str[i]);
-		i--;
-	}
+		err = ft_putchar(str[i--]);
 	free(str);
+	return (err);
 }
 
 int	ft_unsign(unsigned int nb)
 {
-	int	i;
+	int	j;
+	int	error;
 
-	i = 0;
+	j = 0;
 	if (nb == 0)
-		i = 1;
-	ft_print_unsign(nb);
+		j = 1;
+	error = ft_print_unsign(nb);
+	if (error == -1)
+		return (-1);
 	while (nb != 0)
 	{
 		nb = nb / 10;
-		i++;
+		j++;
 	}
-	return (i);
+	return (j);
 }

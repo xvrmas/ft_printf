@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:12:21 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/07/27 14:47:41 by xamas-ga         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:51:03 by xamas-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -45,7 +45,7 @@ static int	ft_letter(int letter)
 	return (upper);
 }
 
-static int	ft_result(unsigned int	hex, char *result, int upper)
+static int	ft_result(unsigned int hex, char *result, int upper)
 {
 	int	reminder;
 	int	i;
@@ -66,6 +66,7 @@ static int	ft_result(unsigned int	hex, char *result, int upper)
 	}
 	i--;
 	ft_puthex(result, i);
+	free(result);
 	return (len);
 }
 
@@ -81,9 +82,11 @@ int	ft_hex(unsigned int hex, int letter)
 	upper = ft_letter(letter);
 	result = (char *)malloc(sizeof(char) * len + 1);
 	if (!result)
-		return (0);
+	{
+		free(result);
+		return (-1);
+	}
 	lenth += ft_result(hex, result, upper);
-	free(result);
 	if (hex == 0)
 		lenth += ft_putchar('0');
 	return (lenth);
