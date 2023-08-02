@@ -5,8 +5,8 @@ int main()
 {
 	int len;
 	int i;
-
-/*	int len2;
+/*
+	int len2;
 	int len3;
   
 	ft_printf("printf: %d\n", i);
@@ -34,7 +34,7 @@ int main()
 	ft_printf("len2: %d\n", len2);
 	ft_printf("i:    %d\n", i);
 	ft_printf("len3: %d\n", len3);
-*/
+
 
 	ft_printf("------------------------------------------&x-&X---------------------------------\n");
 	char punt;
@@ -50,8 +50,8 @@ int main()
     	i =      printf("Puntero hexa printf:    %p y %p\n", ppptr, NULL);
     	ft_printf("len: %d\n", len);
    	ft_printf("i:   %d\n", i);
-/*
-ft_printf("------------------------------------------&x-&X---------------------------------\n");
+
+	ft_printf("------------------------------------------&x-&X---------------------------------\n");
 	char a = 'H';
 	len = ft_printf("char: %%m%c \n", a);
 	i = printf("char: %%m%c \n", a);
@@ -62,13 +62,18 @@ ft_printf("------------------------------------------&x-&X----------------------
 	i = printf("Porcentaje: 100%%, 90%%, 75%% y 25%%\n");
 	printf("len: %d\n", len);
         printf("i: %d\n", i);
+*/
+	len = ft_printf("%d %d", 2147483647, (int)-2147483648);
+	printf("\n");
+	i = printf("%d %d", 2147483647, (int)-2147483648);	
 
-	len = ft_printf("%d",3647);
+
+/*	len = ft_printf("%d", 647);
 	ft_printf("\n");
-	i = printf("%d", 3647);
-	printf("\nlen: %d", len);
+	i = printf("%d",  647);
+*/	printf("\nlen: %d", len);
     	printf("\ni: %d\n", i);
-
+/*
 	ft_printf("------------------------------------------&x-&X---------------------------------\n");
 
 	int j;

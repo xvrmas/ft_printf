@@ -6,12 +6,13 @@
 /*   By: xamas-ga <xamas-ga@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:09:27 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/08/01 17:32:05 by xamas-ga         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:58:12 by xamas-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 static int	ft_len(unsigned int num)
 {
@@ -28,18 +29,18 @@ static int	ft_len(unsigned int num)
 	return (len);
 }
 
-static int	ft_print_unsign(unsigned int num)
+static int	ft_print_unsign(char *str, unsigned int num)
 {
-	int		len;
 	int		i;
-	char	*str;
 	int		err;
 
-	len = ft_len(num);
 	i = 0;
+	err = 0;
 	if (num == 0)
-		ft_putchar('0');
-	str = (char *)malloc(sizeof(char) * len + 1);
+	{
+		if (write(1, "0", 1) == -1)
+			return (-1);
+	}
 	while (num > 0)
 	{
 		str[i++] = (num % 10) + '0';
@@ -48,25 +49,27 @@ static int	ft_print_unsign(unsigned int num)
 	i--;
 	while (i >= 0)
 		err = ft_putchar(str[i--]);
+	if (err == -1)
+		return (-1);
 	free(str);
 	return (err);
 }
 
 int	ft_unsign(unsigned int nb)
 {
-	int	j;
-	int	error;
+	int		len;
+	int		err;
+	char	*str;
 
-	j = 0;
+	err = 0;
+	len = ft_len(nb);
 	if (nb == 0)
-		j = 1;
-	error = ft_print_unsign(nb);
-	if (error == -1)
+		len = 1;
+	str = (char *)malloc(sizeof(char) * len + 1);
+	if (!str)
 		return (-1);
-	while (nb != 0)
-	{
-		nb = nb / 10;
-		j++;
-	}
-	return (j);
+	err = ft_print_unsign(str, nb);
+	if (err == -1)
+		return (-1);
+	return (len);
 }

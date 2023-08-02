@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:12:21 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/08/01 17:51:03 by xamas-ga         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:06:19 by xamas-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -26,13 +26,19 @@ static int	ft_len(unsigned int num)
 	return (i);
 }
 
-static void	ft_puthex(const char *result, int i)
+static int	ft_puthex(const char *result, int i)
 {
+	int	error;
+
+	error = 0;
 	while (i >= 0)
 	{
-		ft_putchar(result[i]);
+		error = ft_putchar(result[i]);
+		if (error == -1)
+			return (-1);
 		i--;
 	}
+	return (error);
 }
 
 static int	ft_letter(int letter)
@@ -50,6 +56,7 @@ static int	ft_result(unsigned int hex, char *result, int upper)
 	int	reminder;
 	int	i;
 	int	len;
+	int	err;
 
 	i = 0;
 	len = 0;
@@ -65,7 +72,9 @@ static int	ft_result(unsigned int hex, char *result, int upper)
 		len++;
 	}
 	i--;
-	ft_puthex(result, i);
+	err = ft_puthex(result, i);
+	if (err == -1)
+		return (-1);
 	free(result);
 	return (len);
 }
@@ -74,10 +83,10 @@ int	ft_hex(unsigned int hex, int letter)
 {
 	int		upper;
 	int		len;
-	int		lenth;
+	int		length;
 	char	*result;
 
-	lenth = 0;
+	length = 0;
 	len = ft_len(hex);
 	upper = ft_letter(letter);
 	result = (char *)malloc(sizeof(char) * len + 1);
@@ -86,8 +95,8 @@ int	ft_hex(unsigned int hex, int letter)
 		free(result);
 		return (-1);
 	}
-	lenth += ft_result(hex, result, upper);
+	length += ft_result(hex, result, upper);
 	if (hex == 0)
-		lenth += ft_putchar('0');
-	return (lenth);
+		length += ft_putchar('0');
+	return (length);
 }

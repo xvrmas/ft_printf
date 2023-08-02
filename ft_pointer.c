@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:27:39 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/08/01 19:53:03 by xamas-ga         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:08:57 by xamas-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -28,8 +28,8 @@ static int	ft_len(uintptr_t ptr)
 }
 
 static int	ft_print_ptr(char *result, int i)
-{	
-	int err;
+{
+	int	err;
 
 	err = 0;
 	while (i >= 0)
@@ -38,7 +38,7 @@ static int	ft_print_ptr(char *result, int i)
 		if (err == -1)
 		{
 			free(result);
-			return(-1);
+			return (-1);
 		}
 		i--;
 	}
@@ -50,7 +50,7 @@ static int	ft_put_ptr(char *result, uintptr_t ptr)
 {
 	int	reminder;
 	int	i;
-	int err;
+	int	err;
 
 	i = 0;
 	err = 0;
@@ -82,7 +82,7 @@ int	ft_pointer(unsigned long ptr)
 	len += ft_len(ptr);
 	if (ptr == 0 || !ptr)
 	{
-		error =  ft_string("0x0");
+		error = ft_string("(nil)");
 		if (error == -1)
 			return (-1);
 		return (error);
@@ -90,7 +90,7 @@ int	ft_pointer(unsigned long ptr)
 	else
 	{
 		len += 2;
-	   	error = ft_string("0x");
+		error = ft_string("0x");
 		if (error == -1)
 			return (-1);
 		result = (char *)malloc(sizeof(char) * len + 1);

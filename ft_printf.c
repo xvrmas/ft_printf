@@ -6,7 +6,7 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 12:59:18 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/08/01 19:53:10 by xamas-ga         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:58:18 by xamas-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdarg.h>
@@ -31,8 +31,8 @@ static int	ft_format(va_list args, const char *format)
 	else if (*format == '%')
 		len += ft_putchar('%');
 	else if (*format == 'p')
-		len += ft_pointer(va_arg(args, unsigned  long));
-	else if (*format == 'd' || *format == 'i') 
+		len += ft_pointer(va_arg(args, unsigned long));
+	else if (*format == 'd' || *format == 'i')
 		len += ft_digit(va_arg(args, int));
 	else if (*format == 'u')
 		len += ft_unsign(va_arg(args, unsigned int));
@@ -43,33 +43,29 @@ int	ft_printf(char const *format, ...)
 {
 	va_list	args;
 	int		len;
-	int result;
+	int		result;
 
 	len = 0;
-	result = 0;
 	va_start(args, format);
 	while (*format != '\0')
 	{
 		if (*format == '%')
 		{
-			len += ft_format(args, format);
-			if (len == -1)
-			{
+			result = ft_format(args, format);
+			if (result == -1)
 				return (-1);
-			}
+			len += result;
 			format++;
 		}
 		else
 		{
 			result = ft_putchar(*format);
-		        if (result == -1)
-			{
-            		    return -1;
-			}
-           	}
-            	len += result;
+			if (result == -1)
+				return (-1);
+			len += result;
+		}
+		format++;
 	}
-	format++;
 	va_end(args);
 	return (len);
 }
