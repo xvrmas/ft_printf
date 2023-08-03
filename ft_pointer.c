@@ -6,15 +6,13 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:27:39 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/08/02 15:08:57 by xamas-ga         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:28:49 by xamas-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
-#include <unistd.h>
-#include <stdint.h>
 #include "ft_printf.h"
 
-static int	ft_len(uintptr_t ptr)
+static int	ft_len(unsigned long ptr)
 {
 	int	len;
 
@@ -46,7 +44,7 @@ static int	ft_print_ptr(char *result, int i)
 	return (1);
 }
 
-static int	ft_put_ptr(char *result, uintptr_t ptr)
+static int	ft_put_ptr(char *result, unsigned long ptr)
 {
 	int	reminder;
 	int	i;
@@ -71,40 +69,51 @@ static int	ft_put_ptr(char *result, uintptr_t ptr)
 	return (err);
 }
 
+static int	ft_else(int len, unsigned long ptr)
+{
+	char	*result;
+	int		error;
+
+	error = 0;
+	len += 2;
+	error = ft_string("0x");
+	if (error == -1)
+		return (-1);
+	result = (char *)malloc(sizeof(char) * len + 1);
+	if (!result)
+	{
+		free(result);
+		return (-1);
+	}
+	error = ft_put_ptr(result, ptr);
+	if (error == -1)
+	{
+		free(result);
+		return (-1);
+	}
+	return (len);
+}
+
 int	ft_pointer(unsigned long ptr)
 {
 	int		error;
 	int		len;
-	char	*result;
 
 	len = 0;
 	error = 0;
 	len += ft_len(ptr);
 	if (ptr == 0 || !ptr)
 	{
-		error = ft_string("(nil)");
+		error = ft_string("0x0");
 		if (error == -1)
 			return (-1);
 		return (error);
 	}
 	else
 	{
-		len += 2;
-		error = ft_string("0x");
+		len = ft_else(len, ptr);
 		if (error == -1)
 			return (-1);
-		result = (char *)malloc(sizeof(char) * len + 1);
-		if (!result)
-		{
-			free(result);
-			return (-1);
-		}
-		error = ft_put_ptr(result, ptr);
-		if (error == -1)
-		{
-			free(result);
-			return (-1);
-		}
 	}
 	return (len);
 }

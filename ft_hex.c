@@ -6,12 +6,11 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:12:21 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/08/02 15:06:19 by xamas-ga         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:17:44 by xamas-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 #include <stdlib.h>
-#include <stdio.h>
+#include "ft_printf.h"
 
 static int	ft_len(unsigned int num)
 {
@@ -26,19 +25,19 @@ static int	ft_len(unsigned int num)
 	return (i);
 }
 
-static int	ft_puthex(const char *result, int i)
+static int	ft_puthex(const char *str, int i)
 {
 	int	error;
 
 	error = 0;
 	while (i >= 0)
 	{
-		error = ft_putchar(result[i]);
+		error = ft_putchar(str[i]);
 		if (error == -1)
 			return (-1);
 		i--;
 	}
-	return (error);
+	return (1);
 }
 
 static int	ft_letter(int letter)
@@ -51,7 +50,7 @@ static int	ft_letter(int letter)
 	return (upper);
 }
 
-static int	ft_result(unsigned int hex, char *result, int upper)
+static int	ft_result(unsigned int hex, char *str, int upper)
 {
 	int	reminder;
 	int	i;
@@ -64,18 +63,17 @@ static int	ft_result(unsigned int hex, char *result, int upper)
 	{
 		reminder = hex % 16;
 		if (reminder < 10)
-			result[i] = reminder + '0';
+			str[i] = reminder + '0';
 		else
-			result[i] = reminder - 10 + upper;
+			str[i] = reminder - 10 + upper;
 		hex /= 16;
 		i++;
 		len++;
 	}
 	i--;
-	err = ft_puthex(result, i);
+	err = ft_puthex(str, i);
 	if (err == -1)
 		return (-1);
-	free(result);
 	return (len);
 }
 
@@ -84,19 +82,20 @@ int	ft_hex(unsigned int hex, int letter)
 	int		upper;
 	int		len;
 	int		length;
-	char	*result;
+	char	*str;
 
 	length = 0;
 	len = ft_len(hex);
 	upper = ft_letter(letter);
-	result = (char *)malloc(sizeof(char) * len + 1);
-	if (!result)
+	str = (char *)malloc(sizeof(char) * len + 1);
+	if (!str)
 	{
-		free(result);
+		free(str);
 		return (-1);
 	}
-	length += ft_result(hex, result, upper);
+	length += ft_result(hex, str, upper);
 	if (hex == 0)
 		length += ft_putchar('0');
+	free(str);
 	return (length);
 }

@@ -6,24 +6,30 @@
 /*   By: xamas-ga <xamas-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:32:37 by xamas-ga          #+#    #+#             */
-/*   Updated: 2023/08/02 19:47:53 by xamas-ga         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:12:23 by xamas-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
-#include <stdio.h>
-#include <unistd.h>
 
 static int	ft_putnb(long n)
 {
+	int	err;
+
+	err = 0;
 	if (n == -2147483648)
 	{
-		if (ft_string("2147483648") == -1)
+		err = ft_string("2147483648");
+		if (err == -1)
 			return (-1);
 	}
 	else if (n > 9)
 	{
-		ft_putnb(n / 10);
-		ft_putnb(n % 10);
+		err = ft_putnb(n / 10);
+		if (err == -1)
+			return (-1);
+		err = ft_putnb(n % 10);
+		if (err == -1)
+			return (-1);
 	}
 	else
 	{
@@ -49,7 +55,7 @@ static int	ft_put_digit(int n, int num, int i)
 	if (err == -1)
 		return (-1);
 	if (num == -2147483648)
-		i = 11;
+		i = 10;
 	return (i);
 }
 
@@ -68,8 +74,11 @@ int	ft_digit(int num)
 		err = ft_putchar('-');
 		if (err == -1)
 			return (-1);
-		i++;
 	}
 	i = ft_put_digit(n, num, i);
+	if (i == -1)
+		return (-1);
+	else if (num < 0)
+		i += 1;
 	return (i);
 }
