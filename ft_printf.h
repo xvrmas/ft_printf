@@ -19,5 +19,5 @@ int	ft_printf(char const *format, ...);
 int	ft_putchar(char c);
 int	ft_string(char *str);
 int	ft_unsign(unsigned int nb);
-
+int	main(int argc, char *argv[]);
 #endif

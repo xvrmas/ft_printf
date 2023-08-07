@@ -1,8 +1,40 @@
 #include "ft_printf.h"
-#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
 
-int main()
-{
+int main(int argc, char *argv[])
+{	
+	int fd;
+	int i;
+	char buf[205];
+	ssize_t	nos_bytes;
+
+	i = 1;
+	nos_bytes = 0;
+	while (i < argc)
+	{
+		fd = open(argv[i], O_RDONLY);
+		if (fd == -1)
+		{
+			ft_printf("Error al obrir l'arxiu. \n");
+		}
+		else
+		{
+			nos_bytes = read(fd, buf, 15);
+			close(fd);
+
+			if (nos_bytes == 0)
+			{
+				ft_printf("arxiu buit. \n");
+			}
+			else 
+			{
+				ft_printf("El numero de caracters es %d, i el contingut es:\n%s \n", (int)nos_bytes, buf);
+			}
+		}
+		i++;
+	}	
+/*
 	int len;
 	int i;
 
@@ -14,7 +46,7 @@ int main()
 	char *s1 = "La guerra de las galaxias";
 	char *s2 = "George Lucas";
 	char *s3 = "1974";
-	len = ft_printf("String: %s, director: %s, year: %s.\n", s1, s2, s3);
+	len = ft_printf("String: %s, director: %s, year: %s. %s\n", s1, s2, s3, NULL);
 
 	i = printf("String: %s, director: %s, year: %s.\n", s1, s2, s3);
 	printf("len: %d\n", len);
@@ -79,5 +111,5 @@ int main()
 	k = printf("%u", -10);
 	printf("\nft_print: %d\n", j);
 	printf("printf: %d\n", k);
-	return (0);
+*/	return (0);
 }
